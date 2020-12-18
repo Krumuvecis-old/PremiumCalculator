@@ -1,6 +1,6 @@
 package premiumCalculator;
 
-import policyStructure.*;
+import policyStructure.Policy;
 
 import java.text.DecimalFormat;
 import java.math.RoundingMode;
