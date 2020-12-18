@@ -1,0 +1,6 @@
+# Default ignored files and folders
+out/
+.idea/workspace.xml
+
+# Personal ignored files
+todo.md
