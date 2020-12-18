@@ -1,6 +1,24 @@
-# Default ignored files and folders
-out/
+# User-specific files:
 .idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
 
-# Personal ignored files
+# Other unnecessary files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
+# File-based project format:
+*.iws
+
+# Output folders:
+out/
+target/
+
+# Personal files
 todo.md

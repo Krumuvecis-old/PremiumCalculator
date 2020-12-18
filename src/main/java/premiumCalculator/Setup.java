@@ -1,9 +1,11 @@
 package premiumCalculator;
 
+import policyStructure.Policy;
+import policyStructure.PolicyObject;
+import policyStructure.PolicySubObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import policyStructure.*;
 
 public class Setup {
 
@@ -11,7 +13,7 @@ public class Setup {
         populateRiskDataBase();
 
         String policyNumber;
-        Policy policy;
+        policyStructure.Policy policy;
         double policyPremium;
 
         policyNumber = "policy1: houseExample";
