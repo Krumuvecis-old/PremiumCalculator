@@ -10,25 +10,32 @@ public class GeneralTest {
         RiskGenerator.generateRiskDataBase();
     }
 
-    @Test
-    void testPolicy1(){
-        PremiumCalculator.calculatePremium(
-                PolicyGenerator.policy1(),
+    static double calculatePremium(PolicyGenerator.PolicyVersion policyVersion){
+        return PremiumCalculator.calculatePremium(
+                PolicyGenerator.policy(policyVersion),
                 RiskGenerator.riskDataBase);
     }
 
+    static double
+            policy1_expectedResult = 2.28,
+            policy2_expectedResult = 17.13;
+
     @Test
-    void testPolicy2_a(){
-        PremiumCalculator.calculatePremium(
-                PolicyGenerator.policy2_a(),
-                RiskGenerator.riskDataBase);
+    void testPolicy_1(){
+        double expected = policy1_expectedResult;
+        double actual = calculatePremium(PolicyGenerator.PolicyVersion._1);
     }
 
     @Test
-    void testPolicy2_b(){
-        PremiumCalculator.calculatePremium(
-                PolicyGenerator.policy2_b(),
-                RiskGenerator.riskDataBase);
+    void testPolicy_2_A(){
+        double expected = policy2_expectedResult;
+        double actual = calculatePremium(PolicyGenerator.PolicyVersion._2_A);
+    }
+
+    @Test
+    void testPolicy_2_B(){
+        double expected = policy2_expectedResult;
+        double actual = calculatePremium(PolicyGenerator.PolicyVersion._2_B);
     }
 
     static void output_results(String policyNumber, double premium){

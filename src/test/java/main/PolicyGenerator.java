@@ -5,6 +5,7 @@ import policyStructure.PolicyObject;
 import policyStructure.PolicySubObject;
 import riskStructure.RiskDataBase;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -12,102 +13,115 @@ public class PolicyGenerator {
 
     static String policyNumber_standard = "LV-1234-polise";
 
-    static Policy policy1(){
-        String policyNumber = policyNumber_standard + ": house example";
-
-        return new Policy(
-                policyNumber,
-                Policy.PolicyStatus.REGISTERED,
-                new ArrayList<>() {{
-                    add(new PolicyObject(
-                            "House",
-                            new ArrayList<>() {{
-                                add(new PolicySubObject(
-                                        "TV",
-                                        100.00,
-                                        new LinkedList<>(){{
-                                            add(RiskDataBase.RiskTypeName.FIRE);
-                                        }}
-                                ));
-                                add(new PolicySubObject(
-                                        "Radio",
-                                        8.00,
-                                        new LinkedList<>(){{
-                                            add(RiskDataBase.RiskTypeName.THEFT);
-                                        }}
-                                ));
-                            }}
-                    ));
-                }}
-        );
+    enum PolicyVersion{
+        _1,
+        _2_A,
+        _2_B
     }
 
-    static class policyGenerator_policy2{
-
+    static Policy policy(PolicyVersion version){
+        return switch (version) {
+            case _1 -> new Policy(
+                    policyNumber_standard + ": house example",
+                    Policy.PolicyStatus.REGISTERED,
+                    policyObjectList(version)
+            );
+            case _2_A -> new Policy(
+                    policyNumber_standard + Policy_2_commonDetails.policyNumberExtension + "A",
+                    Policy_2_commonDetails.policyStatus,
+                    policyObjectList(version)
+            );
+            case _2_B -> new Policy(
+                    policyNumber_standard + Policy_2_commonDetails.policyNumberExtension + " B",
+                    Policy_2_commonDetails.policyStatus,
+                    policyObjectList(version)
+            );
+            default -> null;
+        };
     }
 
-    static class Policy2_details{
-        static String policyNumber = policyNumber_standard + ": car example";
+    static List<PolicyObject> policyObjectList(PolicyVersion version){
+        String policyObjectName = switch (version) {
+            case _1 -> "House";
+            case _2_A, _2_B -> "Car";
+            default -> "Undefined";
+        };
 
-        static double totalSum_FIRE = 500.00, totalSum_THEFT = 102.51;
-        static double valueOf_unstealableItems = Math.max(0, totalSum_FIRE - totalSum_THEFT);
+        return new ArrayList<>() {{
+            add(new PolicyObject(
+                    policyObjectName,
+                    policySubObjectList(version)
+            ));
+        }};
     }
 
-    static Policy policy2_a(){
-        return new Policy(
-                Policy2_details.policyNumber + " A",
-                Policy.PolicyStatus.APPROVED,
-                new ArrayList<>() {{
-                    add(new PolicyObject(
-                            "Car",
-                            new ArrayList<>() {{
-                                add(new PolicySubObject(
-                                        "Stealable items",
-                                        Policy2_details.totalSum_THEFT,
-                                        new LinkedList<>(){{
-                                            add(RiskDataBase.RiskTypeName.FIRE);
-                                            add(RiskDataBase.RiskTypeName.THEFT);
-                                        }}
-                                ));
-                                add(new PolicySubObject(
-                                        "Unstealable items",
-                                        Policy2_details.valueOf_unstealableItems,
-                                        new LinkedList<>(){{
-                                            add(RiskDataBase.RiskTypeName.FIRE);
-                                        }}
-                                ));
-                            }}
-                    ));
-                }}
-        );
+    static List<PolicySubObject> policySubObjectList(PolicyVersion version){
+        List<PolicySubObject> returnableList = new ArrayList<>();
+        switch (version) {
+            case _1 -> {
+                returnableList.add(new PolicySubObject(
+                        "TV",
+                        100.00,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.FIRE);
+                        }}
+                ));
+                returnableList.add(new PolicySubObject(
+                        "Radio",
+                        8.00,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.THEFT);
+                        }}
+                ));
+            }
+            case _2_A -> {
+                double valueOf_unstealableItems = Math.max(
+                        0,
+                        Policy_2_commonDetails.totalSum_FIRE - Policy_2_commonDetails.totalSum_THEFT);
+
+                returnableList.add(new PolicySubObject(
+                        "Stealable items",
+                        Policy_2_commonDetails.totalSum_THEFT,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.FIRE);
+                            add(RiskDataBase.RiskTypeName.THEFT);
+                        }}
+                ));
+                returnableList.add(new PolicySubObject(
+                        "Unstealable items",
+                        valueOf_unstealableItems,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.FIRE);
+                        }}
+                ));
+            }
+            case _2_B -> {
+                returnableList.add(new PolicySubObject(
+                        "Stealable items",
+                        Policy_2_commonDetails.totalSum_THEFT,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.THEFT);
+                        }}
+                ));
+                returnableList.add(new PolicySubObject(
+                        "Burnable items",
+                        Policy_2_commonDetails.totalSum_FIRE,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.FIRE);
+                        }}
+                ));
+            }
+            default -> {}
+        }
+        return returnableList;
     }
 
-    static Policy policy2_b(){
-        return new Policy(
-                Policy2_details.policyNumber + " B",
-                Policy.PolicyStatus.APPROVED,
-                new ArrayList<>() {{
-                    add(new PolicyObject(
-                            "Car",
-                            new ArrayList<>() {{
-                                add(new PolicySubObject(
-                                        "Stealable items",
-                                        Policy2_details.totalSum_THEFT,
-                                        new LinkedList<>(){{
-                                            add(RiskDataBase.RiskTypeName.THEFT);
-                                        }}
-                                ));
-                                add(new PolicySubObject(
-                                        "Burnable items",
-                                        Policy2_details.totalSum_FIRE,
-                                        new LinkedList<>(){{
-                                            add(RiskDataBase.RiskTypeName.FIRE);
-                                        }}
-                                ));
-                            }}
-                    ));
-                }}
-        );
-    }
+    static class Policy_2_commonDetails{
+        static String policyNumberExtension = ": car example";
+        static Policy.PolicyStatus policyStatus = Policy.PolicyStatus.APPROVED;
 
+        static double
+                totalSum_FIRE = 500.00,
+                totalSum_THEFT = 102.51;
+    }
 }

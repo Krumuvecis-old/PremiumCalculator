@@ -7,14 +7,10 @@ import riskStructure.RiskTypeDetails.RateStep.ComparisonType;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 public class RiskGenerator {
 
     static RiskDataBase riskDataBase;
 
-    @BeforeAll
     static void generateRiskDataBase(){
         riskDataBase = new RiskDataBase(new HashMap<>(){{
             put(RiskDataBase.RiskTypeName.FIRE, new RiskTypeDetails(new LinkedList<>(){{
@@ -41,10 +37,4 @@ public class RiskGenerator {
             }}));
         }});
     }
-
-    @Test
-    void testRiskDataBase(){
-
-    }
-
 }
