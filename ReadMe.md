@@ -12,6 +12,11 @@ This is not the final version!
 
 * Policy structure
 * Risk database structure
-* Correctly working premium calculator
-* jUnit5 (Maven) support for testing
+
+* Unit testability
+  * jUnit5 (Maven) support
+  * Risk database generator
+  * Policy generator
+  * Premium calculator unit tests
+* Correctly working premium calculator (tested)
 
