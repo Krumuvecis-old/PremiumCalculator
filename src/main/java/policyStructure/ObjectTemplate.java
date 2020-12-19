@@ -1,5 +1,7 @@
 package policyStructure;
 
+import riskStructure.RiskDataBase;
+
 public abstract class ObjectTemplate {
     public String objectName;
 
@@ -7,5 +9,5 @@ public abstract class ObjectTemplate {
         objectName = _objectName;
     }
 
-    public double calculatePremium(){ return 0; }
+    public double calculatePremium(RiskDataBase riskDataBase){ return 0; }
 }
