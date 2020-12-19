@@ -3,6 +3,8 @@ package main;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class GeneralTest {
 
     @BeforeAll
@@ -24,18 +26,21 @@ public class GeneralTest {
     void testPolicy_1(){
         double expected = policy1_expectedResult;
         double actual = calculatePremium(PolicyGenerator.PolicyVersion._1);
+        assertEquals(expected, actual, "Testing premium for policy 1");
     }
 
     @Test
     void testPolicy_2_A(){
         double expected = policy2_expectedResult;
         double actual = calculatePremium(PolicyGenerator.PolicyVersion._2_A);
+        assertEquals(expected, actual, "Testing premium for policy 2_A");
     }
 
     @Test
     void testPolicy_2_B(){
         double expected = policy2_expectedResult;
         double actual = calculatePremium(PolicyGenerator.PolicyVersion._2_B);
+        assertEquals(expected, actual, "Testing premium for policy 2_B");
     }
 
     static void output_results(String policyNumber, double premium){

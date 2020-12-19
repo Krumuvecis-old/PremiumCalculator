@@ -27,7 +27,7 @@ public class RiskGenerator {
             put(RiskDataBase.RiskTypeName.THEFT, new RiskTypeDetails(new LinkedList<>(){{
                 add(new RiskTypeDetails.RateStep(
                         0,
-                        0.011,
+                        0.11,
                         ComparisonType.GREATER_OR_EQUAL
                 ));
                 add(new RiskTypeDetails.RateStep(
