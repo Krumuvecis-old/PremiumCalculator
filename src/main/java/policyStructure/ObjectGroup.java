@@ -17,10 +17,10 @@ public abstract class ObjectGroup extends ObjectTemplate {
     }
 
     @Override
-    public double calculatePremium(RiskDataBase riskDataBase){
+    public double premium(RiskDataBase riskDataBase){
         double totalPremium = 0;
         for (ObjectTemplate subObject : subObjectList) {
-            totalPremium += subObject.calculatePremium(riskDataBase);
+            totalPremium += subObject.premium(riskDataBase);
         }
         return totalPremium;
     }

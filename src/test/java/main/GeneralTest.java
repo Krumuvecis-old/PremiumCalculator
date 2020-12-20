@@ -43,12 +43,10 @@ public class GeneralTest {
         assertEquals(expected, actual, "Testing premium for policy 2_B");
     }
 
-    static void output_results(String policyNumber, double premium){
-
-        //Unused method
-
-        System.out.println(policyNumber);
-        System.out.println("total premium: " + premium);
+    @Test
+    void testPolicy_3(){
+        double expected = 1.24; //Manually calculated
+        double actual = calculatePremium(PolicyGenerator.PolicyVersion._3);
+        assertEquals(expected, actual, "Testing premium for policy 3");
     }
-
 }
