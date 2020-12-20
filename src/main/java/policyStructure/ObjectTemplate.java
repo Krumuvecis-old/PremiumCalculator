@@ -9,5 +9,7 @@ public abstract class ObjectTemplate {
         objectName = _objectName;
     }
 
-    public double calculatePremium(RiskDataBase riskDataBase){ return 0; }
+    public double premium(RiskDataBase riskDataBase){
+        return 0;
+    }
 }

@@ -18,17 +18,4 @@ public class PolicySubObject extends ObjectTemplate {
         sumInsured = _sumInsured;
         riskTypes = _riskTypes;
     }
-
-    @Override
-    public double calculatePremium(RiskDataBase riskDataBase){
-        double totalPremium = 0;
-
-        for (RiskDataBase.RiskTypeName riskType : riskTypes) {
-            double applicableCoefficient = riskDataBase.getApplicableCoefficient(riskType, sumInsured);
-            double premiumPerRiskType = sumInsured * applicableCoefficient;
-            totalPremium += premiumPerRiskType;
-        }
-
-        return totalPremium;
-    }
 }

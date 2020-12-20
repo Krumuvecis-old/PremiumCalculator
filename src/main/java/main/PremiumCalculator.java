@@ -11,7 +11,7 @@ import java.util.Locale;
 public class PremiumCalculator {
 
     public static double calculatePremium(Policy policy, RiskDataBase riskDataBase){
-        double policyPremium = policy.calculatePremium(riskDataBase);
+        double policyPremium = policy.premium(riskDataBase);
         return roundedValue(policyPremium);
     }
 

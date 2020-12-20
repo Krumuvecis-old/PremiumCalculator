@@ -6,9 +6,11 @@ public class RiskDataBase {
 
     public Map<RiskTypeName, RiskTypeDetails> riskTypeList;
 
+    @SuppressWarnings("unused")
     public enum RiskTypeName{
         FIRE,
-        THEFT
+        THEFT,
+        RISKTYPE_PLACEHOLDER
     }
 
     public RiskDataBase(Map<RiskTypeName, RiskTypeDetails> _riskTypeList){
