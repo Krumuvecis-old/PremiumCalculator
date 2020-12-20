@@ -42,13 +42,4 @@ public class GeneralTest {
         double actual = calculatePremium(PolicyGenerator.PolicyVersion._2_B);
         assertEquals(expected, actual, "Testing premium for policy 2_B");
     }
-
-    static void output_results(String policyNumber, double premium){
-
-        //Unused method
-
-        System.out.println(policyNumber);
-        System.out.println("total premium: " + premium);
-    }
-
 }
