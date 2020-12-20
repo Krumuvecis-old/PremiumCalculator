@@ -16,9 +16,11 @@ public class PolicyGenerator {
     enum PolicyVersion{
         _1,
         _2_A,
-        _2_B
+        _2_B,
+        _3
     }
 
+    @SuppressWarnings("UnnecessaryDefault")
     static Policy policy(PolicyVersion version){
         return switch (version) {
             case _1 -> new Policy(
@@ -36,14 +38,21 @@ public class PolicyGenerator {
                     Policy_2_commonDetails.policyStatus,
                     policyObjectList(version)
             );
+            case _3 -> new Policy(
+                    policyNumber_standard + ": example 3",
+                    Policy.PolicyStatus.REGISTERED,
+                    policyObjectList(version)
+            );
             default -> null;
         };
     }
 
+    @SuppressWarnings("UnnecessaryDefault")
     static List<PolicyObject> policyObjectList(PolicyVersion version){
         String policyObjectName = switch (version) {
             case _1 -> "House";
             case _2_A, _2_B -> "Car";
+            case _3 -> "Policy 3 - ExampleObject";
             default -> "Undefined";
         };
 
@@ -111,6 +120,30 @@ public class PolicyGenerator {
                         }}
                 ));
             }
+            case _3 -> {
+                returnableList.add(new PolicySubObject(
+                        "Stealable items",
+                        10,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.THEFT);
+                        }}
+                ));
+                returnableList.add(new PolicySubObject(
+                        "Burnable items",
+                        10,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.FIRE);
+                        }}
+                ));
+                returnableList.add(new PolicySubObject(
+                        "Undefined risk items",
+                        10,
+                        new LinkedList<>() {{
+                            add(RiskDataBase.RiskTypeName.RISKTYPE_PLACEHOLDER);
+                        }}
+                ));
+            }
+
             default -> {}
         }
         return returnableList;
