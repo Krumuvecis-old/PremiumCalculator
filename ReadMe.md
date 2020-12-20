@@ -2,11 +2,7 @@
 
 SDK used: openJDK-14 (java 14.0.1)
 
-
-<h2> Important </h2>
-
-This is not the final version!
-
+Built using Maven.
 
 <h2> Functionality </h2>
 
@@ -14,9 +10,13 @@ This is not the final version!
 * Risk database structure
 
 * Unit testability
-  * jUnit5 (Maven) support
+  * jUnit5 support
   * Risk database generator
   * Policy generator
   * Premium calculator unit tests
 * Correctly working premium calculator (tested)
+
+<h2>Implementation description</h2>
+
+Do something
 

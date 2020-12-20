@@ -45,7 +45,7 @@ public class GeneralTest {
 
     @Test
     void testPolicy_3(){
-        double expected = 10 * 0.11 + 10 * 0.014;
+        double expected = 1.24; //Manually calculated
         double actual = calculatePremium(PolicyGenerator.PolicyVersion._3);
         assertEquals(expected, actual, "Testing premium for policy 3");
     }
